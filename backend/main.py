@@ -368,10 +368,14 @@ def run_all(req: AllRequest):
     de_res = run_de(req.de)
     return {"gp": gp_res, "de": de_res}
 
+@app.get("/")
+def root():
+    return {"status": "API running"}
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
